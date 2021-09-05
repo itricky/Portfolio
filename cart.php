@@ -1,6 +1,5 @@
 <?php
 
-
 $id= $_GET["id"];
 $name= $_GET["name"];
 $price= $_GET["price"];
