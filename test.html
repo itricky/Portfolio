@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="1" /> -->
+    <title>json序列化與反序列化</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<!-- <script>
+    
+document.cookie = "all_id=['1','2','3','2','1','4','1','4','1','4','10','101','41',2,3,4,,9,a,' ', null, undefined]";
+document.cookie = "test1=test1"; //假資料
+document.cookie = "test2=test2"; //假資料
+// console.log(document.cookie);
+
+// cookie 轉 array
+function parseCookie() {
+    let cookieObj = {};
+    let cookieAry = document.cookie.split('; ');
+    // console.log(cookieAry);
+    let cookie;
+    for (let i=0, l=cookieAry.length; i<l; ++i) {
+        if(cookieAry[i].includes('=')){
+            cookie = cookieAry[i].split('=');
+            cookieObj[cookie[0]] = cookie[1];
+        }
+    }
+    return cookieObj;
+}
+
+function getCookieByName(name) {
+    let value = parseCookie()[name];
+    if (value) 
+    value = decodeURIComponent(value);
+    return value;
+}
+  
+// console.log(getCookieByName("all_id"));
+// console.log(typeof(getCookieByName("all_id")));
+
+const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+console.log(all_id);
+
+// 篩選正確資料
+let new_all_id = all_id.filter(
+    function (inutile) {
+        return inutile && inutile.trim(); 
+    }
+);
+console.log(new_all_id);
+
+// 去除重複資料
+var mySet1 = new Set(new_all_id);
+console.log(Array.from(mySet1));
+
+
+
+</script> -->
+<script>
+
+
+    var show;
+    $.ajax({
+        url: "http://localhost/Resume/ShopWeb/product.php",
+        type: "GET",
+        dataType: "json",
+        success: show,
+        error: function(){ alert("error!"); }
+    });
+    function  show(data){
+        console.log(data);
+    };
+
+
+    // $.ajax({
+    // url: url,
+    // data: data,
+    // success: success,
+    // dataType: dataType
+    // });
+</script>
+</body>
+</html>

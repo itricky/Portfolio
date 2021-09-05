@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html data-country="TW" data-test-group="1" lang="zh-TW">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="indexCSS.css">
+    <title>購物網</title>
+</head>
+<body>
+    <div id="container">
+        <div class="DIV1">
+            <div class="categorybox">
+                <p class="heading"> 產品搜尋 <span class="smalltext">Search</span></p>
+                <form name="form1" method="get" action="#">
+                    <p>
+                        <input name="keyword" type="text" id="keyword" value="請輸入關鍵字" size="12" onClick="this.value='';" style="text-align:center;">
+                        <input type="submit" id="button" value="查詢">
+                    </p>
+                </form>
+                <br><p>================</p><br>
+    
+                <p class="heading"> 價格區間 <span class="smalltext">Price</span></p>
+    
+                <form action="#" method="get" name="form2" id="form2">
+                    <p>
+                        <input name="price1" type="text" id="price1" value="0" size="3" style="width:60px; text-align:center;" >
+                        -
+                        <input name="price2" type="text" id="price2" value="0" size="3" style="width:60px; text-align:center;" >
+                        <input type="submit" id="button2" value="查詢">
+                    </p>
+                </form>
+            </div>
+            <br><p>================</p><br>
+            <div>
+                <dl>
+                    <dd><input id="buttona" type="button" value="所有產品" onclick="Product(0)"></dd>
+                    <li><input id="buttonb" type="button" value="ASUS" onclick="Product(1)"></li>
+                    <li><input id="buttonc" type="button" value="ACER" onclick="Product(2)" ></li>
+                    <li><input id="buttond" type="button" value="HP" onclick="Product(3)" ></li>
+                    <li><input id="buttone" type="button" value="SONY" onclick="Product(4)" ></li>
+                </dl>
+            </div>
+            
+        </div>
+        <div class="DIV2">
+            <div id="member_list">
+            </div>
+        </div>        
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    let urlParams = new URLSearchParams(window.location.search);
+    if ( urlParams.get('keyword') > 0 && urlParams.get('keyword') != "" ) {
+        console.log(urlParams.get('keyword'));
+        // $("#productImage").attr("src", "images/2.png"); 
+    }else{
+        // self.location.href="index.html";
+    }
+    var $checkurl = "http://localhost/keyword.php?keyword="+urlParams.get('keyword');
+
+    // console.log($checkurl);
+    console.log(urlParams.get('keyword'));
+
+    $(function(){
+        $.ajax({
+            type: "GET",
+            url: $checkurl,
+            dataType: "json",
+            success: show,
+            error: function(){ alert("error!");}
+        });
+    });
+
+    function show(data){ 
+        all_ID=data; 
+        console.log(data);
+
+        Product(0);
+    };
+
+    function Product(ProductID){
+        console.log(all_ID);
+        console.log(ProductID);
+        $("#member_list").empty();
+        if ((ProductID == 0)||(ProductID == "")){
+            for (i=0; i<all_ID.length; i++){
+                var str = '<div id="commodity"><a href="cart.html?id=' + all_ID[i].productid + '"><img src="proimg/' + all_ID[i].productimages + '" alt="' + all_ID[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID[i].productname + '</a></div>';
+                $("#member_list").append(str);
+            };
+        } else {
+            for (i=0; i<all_ID.length; i++){   
+                if ( all_ID[i].categoryid == ProductID ) {
+                    var str = '<div id="commodity"><a href="cart.html?id=' + all_ID[i].productid + '"><img src="proimg/' + all_ID[i].productimages + '" alt="' + all_ID[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID[i].productname + '</a></div>';
+                    $("#member_list").append(str); 
+                } 
+            };
+        }
+    };
+
+</script>
+</html>

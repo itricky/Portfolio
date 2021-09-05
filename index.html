@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html data-country="TW" data-test-group="1" lang="zh-TW">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="stylesheet" href="indexCSS.css">
+    <title>購物網</title>
+</head>
+<body>
+    <div id="container">
+        <div class="DIV1">
+            <div class="categorybox">
+                <p class="heading">產品搜尋<span class="smalltext">Search</span></p>
+                <form name="form1" method="get" action="#">
+                    <p>
+                        <input name="keyword" type="text" id="keyword" value="請輸入關鍵字" size="12" onClick="this.value='';" style="text-align:center;">
+                        <input type="submit" id="button1" value="查詢">
+                    </p>
+                </form>
+                <br><p>================</p><br>
+    
+                <p class="heading"> 價格區間 <span class="smalltext">Price</span></p>
+    
+                <form action="#" method="get" name="form2" id="form2">
+                    <p>
+                        <input name="price1" type="text" id="price1" value="0" size="3" style="width:60px; text-align:center;" >
+                        -
+                        <input name="price2" type="text" id="price2" value="0" size="3" style="width:60px; text-align:center;" >
+                        <input type="submit" id="button2" value="查詢">
+                    </p>
+                </form>
+            </div>
+            <br><p>================</p><br>
+            <div>
+                <dl>
+                    <dd><input id="buttona" class="Product" type="button" value="所有產品" onclick="Product1(0)"></dd>
+                    <li><input id="buttonb" class="Product" type="button" value="ASUS" onclick="Product1(1)"></li>                  
+                    <li><input id="buttonc" class="Product" type="button" value="ACER" onclick="Product1(2)" ></li>
+                    <li><input id="buttond" class="Product" type="button" value="HP" onclick="Product1(3)" ></li>
+                    <li><input id="buttone" class="Product" type="button" value="SONY" onclick="Product1(4)" ></li>
+                </dl>
+            </div>
+            <br><p>================</p><br>
+            <div>
+                我的購物車
+            </div>
+            
+        </div>
+        <div class="DIV2" style="overflow-y:auto">
+            <div id="member_list"></div>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    
+    // 一開始登入畫面，讀取所有資料
+    $(document).ready(
+    
+        $.get("product.php", function(data_json){
+            $data_array=JSON.parse(data_json);
+            
+            for (i=0; i<$data_array.length; i++){
+                var str = '<div id="commodity"><a href="product.html?id=' + $data_array[i].productid + '"><img src="proimg/' + $data_array[i].productimages + '" alt="' + $data_array[i].productname + '"width="135" height="135" border="0" /></br>'+ $data_array[i].productname + '</a></div>';
+                $("#member_list").append(str);
+            };
+        })
+    
+    );
+
+</script>
+
+
+<script>
+    let urlParams = new URLSearchParams(window.location.search);
+    var $keywordStr=urlParams.get('keyword');
+    var $price1Str=urlParams.get('price1');
+    var $price2Str=urlParams.get('price2');
+    console.log($keywordStr);
+    console.log($price1Str);
+    console.log($price1Str);
+    var show;
+    $(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/product.php",
+            dataType: "json",
+            success: show,
+            error: function(){ alert("error!"); }
+        });
+    });
+
+    // function show(data){ 
+    //     all_ID=data;
+    //     Product(0);
+    // };
+
+    // function Product(ProductID){ 
+    //     event.preventDefault();
+    //     // console.log($keywordStr);
+    //     $("#member_list").empty();
+    //     console.log($keywordStr);
+    //     if ((ProductID == 0)||(ProductID == "")){
+    //         for (i=0; i<all_ID.length; i++){
+    //             var str = '<div id="commodity"><a href="product.html?id=' + all_ID[i].productid + '"><img src="proimg/' + all_ID[i].productimages + '" alt="' + all_ID[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID[i].productname + '</a></div>';
+    //             $("#member_list").append(str);
+    //         };
+    //     }; 
+    // };
+
+// ========================= 所有產品 ========================= //
+    var show2;
+    $(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/product.php",
+            dataType: "json",
+            success: show2,
+            error: function(){ alert("error!"); }
+        });
+    });
+
+    function show2(data2){ 
+        all_ID2=data2;
+    };
+
+    function Product1(ProductID){ 
+        $("#member_list").empty();
+        $keywordStr=null;
+        console.log($keywordStr);
+        if ((ProductID == 0)||(ProductID == "")){
+            for (i=0; i<all_ID2.length; i++){
+                var str = '<div id="commodity"><a href="product.html?id=' + all_ID2[i].productid + '"><img src="proimg/' + all_ID2[i].productimages + '" alt="' + all_ID2[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID2[i].productname + '</a></div>';
+                $("#member_list").append(str);
+            };
+        } else {
+            for (i=0; i<all_ID2.length; i++){   
+                if ( all_ID2[i].categoryid == ProductID ) {
+                    var str = '<div id="commodity"><a href="product.html?id=' + all_ID2[i].productid + '"><img src="proimg/' + all_ID2[i].productimages + '" alt="' + all_ID2[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID2[i].productname + '</a></div>';
+                    $("#member_list").append(str); 
+                } 
+            };
+        };  
+        history.pushState( null, null, 'index.html');  
+    };
+
+    // ==============================  keyword  ============================== 
+    if ($keywordStr != null) {
+        var $keywordCheckURL = "http://localhost/keyword.php?keyword="+urlParams.get('keyword');
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: $keywordCheckURL,
+                dataType: "json",
+                success: keywordShow,
+                error: function(){ alert("error!");}
+            });
+        });
+
+        function keywordShow(data){ 
+            all_ID=data; 
+            console.log(data);
+            keywordProduct(0);
+        };
+
+        function keywordProduct(ProductID){
+            console.log(all_ID);
+            console.log(ProductID);
+            $("#member_list").empty();
+                if ((ProductID == 0)||(ProductID == "")){
+                    for (i=0; i<all_ID.length; i++){
+                        var str = '<div id="commodity"><a href="product.html?id=' + all_ID[i].productid + '"><img src="proimg/' + all_ID[i].productimages + '" alt="' + all_ID[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID[i].productname + '</a></div>';
+                        $("#member_list").append(str);
+                    };
+                };
+        };
+    };
+
+
+    // ==============================  keyword      ============================== 
+    // ==============================  Price range  ============================== 
+
+    if (($price1Str != null) && ($price2Str != null) && ( $price1Str <= $price2Str )){
+    var $checkPriceUrl = 'http://localhost/price.php?price1='+ urlParams.get('price1') + '&price2=' +urlParams.get('price2');
+    console.log($checkPriceUrl);
+    $(function(){
+        $.ajax({
+            type: "GET",
+            url: $checkPriceUrl,
+            dataType: "json",
+            success: keywordShow,
+            error: function(){ alert("error!");}
+        });
+    });
+
+    function keywordShow(data){ 
+        all_ID=data; 
+        console.log(data);
+        keywordProduct(0);
+    };
+
+    function keywordProduct(ProductID){
+        console.log(all_ID);
+        console.log(ProductID);
+        $("#member_list").empty();
+        if ((ProductID == 0)||(ProductID == "")){
+            for (i=0; i<all_ID.length; i++){
+                var str = '<div id="commodity"><a href="product.html?id=' + all_ID[i].productid + '"><img src="proimg/' + all_ID[i].productimages + '" alt="' + all_ID[i].productname + '"width="135" height="135" border="0" /></br>'+ all_ID[i].productname + '</a></div>';
+                $("#member_list").append(str);
+            };
+        };
+    };
+};
+
+    // ==============================  Price range  ============================== 
+</script>
+</html>

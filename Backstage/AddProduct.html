@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddProduct</title>
+    <style>
+        * {
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box;
+        }
+
+        body{
+            min-width: 1440px;
+            height: 100%; 
+            margin: 0px;
+            /* background-color: black; */
+            background-color:#D4D4D4;
+        }
+
+        #container{
+            min-width: 500px; 
+            min-height: 600px;
+            margin: 1% 3%;
+            padding: .4472in;
+            background-color:#ababab;
+            overflow:hidden;
+        }
+
+        .DIV1{
+            width:100%;
+            min-height: 600px;
+            padding:20px;
+            border:2px green solid;
+            float:left;
+        }
+
+        tr{
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="DIV1">
+    <table width="780" border="0" align="center" cellpadding="4" cellspacing="0">
+    <form action="AddProudct.php" method="POST" name="formUpdate" id="formUpdate" onSubmit="return checkForm();">
+        <p class="heading">商品資訊</p>
+        <!-- <p><label>廠牌</label>：<input name="m_name" type="text" id="m_name"></p><hr> -->
+        <label>廠牌：
+            <select name="pets">
+                <!-- <option value="">請選擇廠牌</option> -->
+                <option value="1"selected>ASUS</option>
+                <option value="2">ACER</option>
+                <option value="3">HP</option>
+                <option value="4">SONY</option>
+            </select>
+        </label>
+        <hr>
+        <label>商品名稱</label>：<input name="m_name" type="text" id="m_name" required><hr>
+        <label>價格</label>：<input name="m_price" type="number" min="0" id="m_price" required><hr>
+        <label>圖片檔案名稱</label>：<input name="m_picture" type="text" id="m_picture" required><hr>                   
+        <label>商品介紹</label>：</br>
+        <textarea name="m_description"  id="m_description" cols="50" rows="5" required></textarea>
+        <p align="center">
+            <!-- <input name="myID" type="hidden" id="myID" value=""> -->
+            <input name="action" type="hidden" id="action" value="add">
+            <input type="submit" name="Submit2" value="新增產品">
+            <input type="reset" name="Submit3" value="重設資料">
+            <input type="button" name="Submit" value="回上一頁" onClick="window.history.back();">
+        </p>
+    </form>
+    </table>
+    </div>      
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</html>

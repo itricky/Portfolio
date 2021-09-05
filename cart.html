@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<!-- ricky_WEB -->
+<html data-country="TW" data-test-group="1" lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta http-equiv="refresh" content="1" /> -->
+<link rel="stylesheet" href="indexCSS.css">
+<title>購物網</title>
+<!-- <script src="https:///code.jquery.comjquery-3.4.1.min.js"></script> -->
+<script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div class="DIV1">
+            <dl>
+                <!-- <dd><input id="buttona" type="button" value="所有產品" onclick="Product(0)"></dd>
+                <li><input id="buttonb" type="button" value="ASUS" onclick="Product(1)"></li>
+                <li><input id="buttonc" type="button" value="ACER" onclick="Product(2)"></li>
+                <li><input id="buttond" type="button" value="HP" onclick="Product(3)"></li>
+                <li><input id="buttone" type="button" value="SONY" onclick="Product(4)"></li> -->
+            </dl>
+        </div>
+
+        <div class="DIV2">
+            <div id="member_list">
+                <form action="#" method="GET" name="cartform" id="cartform">
+                    <table width="98%" border="0" align="center" cellpadding="2" cellspacing="1" id=tbID>
+                        <tr>
+                            <th bgcolor="#ECE1E1"><p>刪除</p></th>
+                            <th bgcolor="#ECE1E1"><p>產品名稱</p></th>
+                            <th bgcolor="#ECE1E1"><p>數量</p></th>
+                            <th bgcolor="#ECE1E1"><p>單價</p></th>
+                            <th bgcolor="#ECE1E1"><p>小計</p></th>
+                        </tr>
+                                  
+                        <!-- <tr>
+                            <td align="center" bgcolor="#F6F6F6" ><p><a href="?cartaction=remove&delid=18">移除</a></p></td>
+                            <td bgcolor="#F6F6F6"><p>SONY VGN-FE25TP</p></td>
+                            <td align="center" bgcolor="#F6F6F6" ><p>
+                            <input name="updateid[]" type="hidden" id="updateid[]" value="18">
+                            <input name="qty[]" type="text" id="qty[]" value="1" size="1">
+                            </p></td>
+                            <td align="center" bgcolor="#F6F6F6" class="tdbline"><p>$ 49,800</p></td>
+                            <td align="center" bgcolor="#F6F6F6" class="tdbline"><p>$ 49,800</p></td>
+                        </tr> -->
+
+                        <!-- <tr>
+                            <td align="center" valign="baseline" bgcolor="#F6F6F6"><p>總計</p></td>
+                            <td valign="baseline" bgcolor="#F6F6F6"><p>&nbsp;</p></td>
+                            <td align="center" valign="baseline" bgcolor="#F6F6F6"><p>&nbsp;</p></td>
+                            <td align="center" valign="baseline" bgcolor="#F6F6F6"><p>&nbsp;</p></td>
+                            <td align="center" valign="baseline" bgcolor="#F6F6F6"><p class="redword">$ 50,300</p></td>
+                        </tr> -->
+
+                    </table>
+
+                    <hr width="100%" size="1" />
+                    <p align="center">
+                    <input name="cartaction" type="hidden" id="cartaction" value="update">
+                    <input type="submit" name="updatebtn" id="button3" value="更新購物車">
+                    <input type="button" name="emptybtn" id="button5" value="清空購物車" onclick="delete_all_cookie()">
+                    <input type="button" name="button" id="button6" value="前往結帳" onClick="window.location.href='checkout.html';">
+                    <input type="button" name="backbtn" id="button4" value="回上一頁" onClick="window.history.back();">
+                    <input type="button" name="backbtn" id="button4" value="回首頁" onClick="window.location.href='index.html';">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 讀取url
+    let urlParams = new URLSearchParams(window.location.search);
+
+    function parseCookie() {
+        let cookieObj = {};
+        let cookieAry = document.cookie.split('; ');
+        let cookie;
+        for (let i=0, l=cookieAry.length; i<l; ++i) {
+            if(cookieAry[i].includes('=')){
+                cookie = cookieAry[i].split('=');
+                cookieObj[cookie[0]] = cookie[1];
+            }
+        }
+        return cookieObj;
+    }
+
+    function getCookieByName(name) {
+        let value = parseCookie()[name];
+            if (value) 
+                value = decodeURIComponent(value);
+        return value;
+    }
+
+    if(urlParams.get('id')){
+        if (!getCookieByName(urlParams.get('id'))){
+            document.cookie = urlParams.get('id')+"="+urlParams.get('qty');
+            window.location.href='cart.html';
+        }else if( getCookieByName(urlParams.get('id')) != "NAN" && urlParams.get('qty') >0 ){
+            setCookie = Number(getCookieByName(urlParams.get('id'))) + Number(urlParams.get('qty'));
+            document.cookie = urlParams.get('id') + "=" + setCookie; 
+            window.location.href='cart.html';
+            console.log(setCookie);
+        }
+    }
+
+    if (!getCookieByName("all_id") && urlParams.get('id')!=" "){
+        document.cookie ="all_id=["+urlParams.get('id')+"]";
+    }
+
+    // cookie轉array
+    const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+    console.log(all_id);
+
+    // array去除空白
+    let new_all_id = all_id.filter(
+        function (inutile) {
+            return inutile && inutile.trim(); 
+        }
+    );
+    console.log(new_all_id);
+
+    // Array去除重複
+    var mySet1 = Array.from(new Set(new_all_id));
+    document.cookie="all_id=["+mySet1+"]";
+
+    if ($.inArray(urlParams.get('id'), mySet1) < "0" && urlParams.get('id')!=null){
+        // console.log(urlParams.get('id'));
+        mySet1.push(urlParams.get('id'));
+        // console.log(mySet1);
+        document.cookie="all_id=["+mySet1+"]";
+    };
+
+
+    $(document).ready(
+    $.get("product.php", function(data_json){
+        $data_array=JSON.parse(data_json);
+        var getUrlString = location.href;
+        var url = new URL(getUrlString);
+        
+        // console.log(all_id);
+        // console.log(all_id.length);
+        for (var i = 0; i < $data_array.length; i++) {
+            // console.log($data_array[i].productid);
+            for(var z=0 ; z<all_id.length; z++){
+                // console.log(all_id[z]);
+                if ($data_array[i].productid==all_id[z]){
+                    // console.log($data_array[i].productid);
+                    // console.log(all_id[z]);
+                    var total_money = getCookieByName(all_id[z]) * $data_array[i].productprice ;
+                    $("#tbID").append(
+                        '<tr>'+
+                        '<td align="center" bgcolor="#F6F6F6" ><p><a href="?cartaction=remove&delid='+$data_array[i].productid+'">移除</a></p></td>'+
+                        '<td bgcolor="#F6F6F6"><p>'+ $data_array[i].productname +'</p></td>'+
+                        '<td align="center" bgcolor="#F6F6F6" ><p>'+
+                        // '<input name="updateid_'+ $data_array[i].productid +'" type="hidden" id="'+ $data_array[i].productid +'" value="'+ $data_array[i].productid +'">'+
+                        '<input name="'+ $data_array[i].productid +'" type="number" id="qty" value="'+ getCookieByName(all_id[z]) +'" size="1">'+
+                        '</p></td>'+
+                        '<td align="center" bgcolor="#F6F6F6" class="tdbline"><p>$ '+ $data_array[i].productprice +'</p></td>'+
+                        '<td align="center" bgcolor="#F6F6F6" class="tdbline"><p>$' + total_money +'</p></td>'+
+                        '</tr>'
+                    );
+                }
+    
+            }
+        }
+    })
+);
+   
+    if (urlParams.get('cartaction')=="remove" && urlParams.get('delid')!=""){
+
+        console.log(urlParams.get('cartaction'));
+
+        console.log(urlParams.get('delid'));
+
+        const del_id_now=parseInt(urlParams.get('delid'))+1;
+
+        // var del_id_now=urlParams.get('delid');
+
+        console.log(del_id_now);
+
+        console.log(typeof(del_id_now));
+                
+        const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+ 
+        console.log(all_id.indexOf("1"));
+        console.log(all_id.indexOf(String(del_id_now)));
+
+        delete all_id[all_id.indexOf(String(del_id_now))];
+
+        console.log(all_id);
+
+        document.cookie="all_id=["+all_id+"]";
+
+        console.log(parseInt(urlParams.get('delid'))+1);
+        delete_cookie_id=parseInt(urlParams.get('delid'))+1;
+        $.removeCookie(String(delete_cookie_id));
+
+        window.location.href='cart.html';
+        
+    };
+
+    function delete_all_cookie() {
+        const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+        console.log(all_id);
+        for (var i = 0; i < all_id.length; i++){
+            console.log(all_id[i]);
+            // document.cookie= all_id[i]+"=0";
+            $.removeCookie(all_id[i]);
+        }
+        $.removeCookie('all_id');
+        window.location.href='cart.html';
+    };
+
+    if (urlParams.get('cartaction')=="update" && urlParams.get('updatebtn')=="更新購物車"){
+        for(var i=0; i<new_all_id.length; i++){
+            // console.log(new_all_id);
+            console.log(new_all_id[i]);
+            console.log(urlParams.get(String(all_id[i])));
+            document.cookie=new_all_id[i] + "=" + urlParams.get(String(all_id[i]));
+            // document.cookie= all_id[i] +"="+ urlParams.get(String(all_id[i])-1);
+            // window.location.href='cart.html';
+        };
+        
+    }
+    console.log(document.cookie);
+</script>
+
+<!-- <script>
+    // 讀取url
+    let urlParams = new URLSearchParams(window.location.search);
+
+    function parseCookie() {
+        let cookieObj = {};
+        let cookieAry = document.cookie.split('; ');
+        let cookie;
+        for (let i=0, l=cookieAry.length; i<l; ++i) {
+            if(cookieAry[i].includes('=')){
+                cookie = cookieAry[i].split('=');
+                cookieObj[cookie[0]] = cookie[1];
+            }
+        }
+        return cookieObj;
+    }
+
+    function getCookieByName(name) {
+        let value = parseCookie()[name];
+            if (value) 
+                value = decodeURIComponent(value);
+        return value;
+    }
+
+    if(urlParams.get('id')){
+        if (!getCookieByName(urlParams.get('id'))){
+            document.cookie = urlParams.get('id')+"="+urlParams.get('qty');
+            window.location.href='cart.html';
+        }else if( getCookieByName(urlParams.get('id')) != "NAN" && urlParams.get('qty') >0 ){
+            setCookie = Number(getCookieByName(urlParams.get('id'))) + Number(urlParams.get('qty'));
+            document.cookie = urlParams.get('id') + "=" + setCookie; 
+            window.location.href='cart.html';
+            console.log(setCookie);
+        }
+    }
+
+    if (!getCookieByName("all_id") && urlParams.get('id')!=" "){
+        document.cookie ="all_id=["+urlParams.get('id')+"]";
+    }
+
+    console.log(getCookieByName("all_id"));
+    // document.cookie ="all_id=['" + urlParams.get('id') + "']";
+    // document.cookie = "all_id=['1','2','3','2','1','4','1','4','1','4','10','101','41',2,3,4,,9,a,' ', null, undefined]";
+
+    // cookie轉array
+    const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+    console.log(all_id);
+
+    // array去除空白
+    let new_all_id = all_id.filter(
+        function (inutile) {
+            return inutile && inutile.trim(); 
+        }
+    );
+    console.log(new_all_id);
+
+    // Array去除重複
+    var mySet1 = Array.from(new Set(new_all_id));
+    document.cookie="all_id=["+mySet1+"]";
+
+    // console.log(mySet1);
+    // console.log(urlParams.get('id'));
+    // console.log($.inArray(urlParams.get('id'), mySet1));
+
+    //判斷是否重複,不重複相加
+    if ($.inArray(urlParams.get('id'), mySet1) < "0" && urlParams.get('id')!=null){
+        // console.log(urlParams.get('id'));
+        mySet1.push(urlParams.get('id'));
+        // console.log(mySet1);
+        document.cookie="all_id=["+mySet1+"]";
+    };
+
+    console.log(document.cookie);
+    // console.log(getCookieByName("all_id"));
+    // console.log(typeof(getCookieByName("all_id")));
+
+    var show;
+    $.ajax({
+        url: "http://localhost/product.php",
+        type: "GET",
+        dataType: "json",
+        success: show,
+        error: function(){ alert("error!"); }
+    });
+
+    function show(data){
+
+        for (var i=0; i<all_id.length; i++){
+            
+            var grab_id=all_id[i]-1;
+
+            if (grab_id>="0"){
+                // console.log(grab_id);
+                var total_money = getCookieByName(grab_id+1) * data[grab_id].productprice;
+                // console.log(data[grab_id].productname);
+                // console.log(total_money);
+
+                $("#tbID").append(
+                '<tr>'+
+                '<td align="center" bgcolor="#F6F6F6" ><p><a href="?cartaction=remove&delid='+grab_id+'">移除</a></p></td>'+
+                '<td bgcolor="#F6F6F6"><p>'+ data[grab_id].productname +'</p></td>'+
+                '<td align="center" bgcolor="#F6F6F6" ><p>'+
+                // '<input name="updateid_'+grab_id+'" type="hidden" id="'+ grab_id +'" value="'+ grab_id +'">'+
+                '<input name="'+grab_id+'" type="text" id="qty" value="'+ getCookieByName(grab_id+1) +'" size="1">'+
+                '</p></td>'+
+                '<td align="center" bgcolor="#F6F6F6" class="tdbline"><p>$ '+ data[grab_id].productprice +'</p></td>'+
+                '<td align="center" bgcolor="#F6F6F6" class="tdbline"><p>$' + total_money +'</p></td>'+
+                '</tr>'
+            );
+            };
+        };
+    };
+    
+    
+    if (urlParams.get('cartaction')=="remove" && urlParams.get('delid')!=""){
+
+        console.log(urlParams.get('cartaction'));
+
+        console.log(urlParams.get('delid'));
+
+        const del_id_now=parseInt(urlParams.get('delid'))+1;
+
+        // var del_id_now=urlParams.get('delid');
+
+        console.log(del_id_now);
+
+        console.log(typeof(del_id_now));
+                
+        const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+ 
+        console.log(all_id.indexOf("1"));
+        console.log(all_id.indexOf(String(del_id_now)));
+
+        delete all_id[all_id.indexOf(String(del_id_now))];
+
+        console.log(all_id);
+
+        document.cookie="all_id=["+all_id+"]";
+
+        console.log(parseInt(urlParams.get('delid'))+1);
+        delete_cookie_id=parseInt(urlParams.get('delid'))+1;
+        $.removeCookie(String(delete_cookie_id));
+
+        window.location.href='cart.html';
+        
+    };
+
+    function delete_all_cookie() {
+        const all_id = getCookieByName("all_id").replace(/\[|\]|'|"|[A-Za-z]/g, "").split(",");
+        console.log(all_id);
+        for (var i = 0; i < all_id.length; i++){
+            console.log(all_id[i]);
+            // document.cookie= all_id[i]+"=0";
+            $.removeCookie(all_id[i]);
+        }
+        $.removeCookie('all_id');
+        window.location.href='cart.html';
+    };
+
+    // 0=1 &3=1 &4=1 &cartaction=update &updatebtn=更新購物車#
+    
+    // console.log(new_all_id["0"]);
+    // console.log(String(all_id["0"])-1);
+    // console.log(urlParams.get(String(all_id["0"])-1));
+    // console.log(urlParams.get(String(new_all_id["0"])));
+
+    if (urlParams.get('cartaction')=="update"&&urlParams.get('updatebtn')=="更新購物車"){
+        // alert('測試文字');
+        // console.log(new_all_id);
+        for(var i=0; i<new_all_id.length; i++){
+            console.log(all_id[i]);
+            console.log(urlParams.get(String(all_id[i])-1));
+            document.cookie= all_id[i] +"="+ urlParams.get(String(all_id[i])-1);
+            window.location.href='cart.html';
+        };
+        
+    }
+
+</script> -->
+
+
+
+</html>

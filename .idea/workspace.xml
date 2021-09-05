@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a29c256f-0ae8-4775-86a0-e1bc59bedabe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/member/member_center.php" beforeDir="false" afterPath="$PROJECT_DIR$/member/member_center.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jJmeCYjzUX3fIWHlFIkTNeQNxe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="member_adminupdate.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/html/phpmember/member_adminupdate.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.member_adminupdate.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a29c256f-0ae8-4775-86a0-e1bc59bedabe" name="Default Changelist" comment="" />
+      <created>1603530661789</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603530661789</updated>
+      <workItem from="1603530662905" duration="30000" />
+      <workItem from="1603530707391" duration="3000" />
+      <workItem from="1603530774059" duration="43000" />
+      <workItem from="1603531475945" duration="2000" />
+      <workItem from="1603531480820" duration="975000" />
+      <workItem from="1603532859868" duration="6000" />
+      <workItem from="1606539492401" duration="76000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="388" y="100" key="#PHP" timestamp="1603532843025">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="388" y="100" key="#PHP/0.0.1440.900@0.0.1440.900" timestamp="1603532843025" />
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1603532853692">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603532853692" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1603532853691">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603532853691" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1603532853691">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603532853691" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1603532853692">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603532853692" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1603532853697">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603532853697" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1603532853696">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1603532853696" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1603532853695">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1603532853695" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1603532853696">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1603532853696" />
+    <state width="1398" height="304" key="GridCell.Tab.2.bottom" timestamp="1603532853698">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603532853698" />
+    <state width="1398" height="304" key="GridCell.Tab.2.center" timestamp="1603532853698">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.center/0.0.1440.900@0.0.1440.900" timestamp="1603532853698" />
+    <state width="1398" height="304" key="GridCell.Tab.2.left" timestamp="1603532853697">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.left/0.0.1440.900@0.0.1440.900" timestamp="1603532853697" />
+    <state width="1398" height="304" key="GridCell.Tab.2.right" timestamp="1603532853698">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.2.right/0.0.1440.900@0.0.1440.900" timestamp="1603532853698" />
+    <state x="549" y="177" key="RollbackChangesDialog" timestamp="1603532316011">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="549" y="177" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1603532316011" />
+    <state x="-1440" y="-178" key="SettingsEditor" timestamp="1606539507750">
+      <screen x="-1440" y="-819" width="1440" height="2535" />
+    </state>
+    <state x="-1440" y="-178" key="SettingsEditor/0.25.1440.803/-1440.-819.1440.2535@-1440.-819.1440.2535" timestamp="1606539507750" />
+  </component>
+</project>
